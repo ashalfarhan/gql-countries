@@ -4,8 +4,8 @@
   "main": "dist",
   "license": "UNLICENSED",
   "dependencies": {
-    "apollo-server": "^3.5.0",
     "class-validator": "^0.13.2",
+    "apollo-server": "^3.5.0",
     "graphql": "^15.3.0",
     "pino": "^7.6.0",
     "pino-pretty": "^7.3.0",
