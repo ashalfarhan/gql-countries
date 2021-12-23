@@ -1,5 +1,5 @@
 import { PluginDefinition } from 'apollo-server-core'
-import { logger } from 'src/utils/logger'
+import { logger } from '../utils/logger'
 
 export const loggerPlugins: PluginDefinition = {
   serverWillStart: async s => {
