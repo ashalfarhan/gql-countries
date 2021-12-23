@@ -22,6 +22,7 @@
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "tsc -b"
+    "build": "tsc -b",
+    "start": "node ."
   }
 }
