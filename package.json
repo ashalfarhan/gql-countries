@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "dist",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "12.22.7",
+    "yarn": "1.22.x"
+  },
   "dependencies": {
-    "class-validator": "^0.13.2",
     "apollo-server": "^3.5.0",
+    "class-validator": "^0.13.2",
     "graphql": "^15.3.0",
     "pino": "^7.6.0",
     "pino-pretty": "^7.3.0",
@@ -13,15 +17,29 @@
     "type-graphql": "^1.1.1"
   },
   "devDependencies": {
-    "axios": "^0.24.0",
+    "@types/jest": "^27.0.3",
     "@types/node": "12",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "axios": "^0.24.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc -b",
-    "start": "node ."
+    "test": "jest --passWithNoTests",
+    "lint": "eslint \"src/**/*.{ts,js}\"",
+    "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix",
+    "format:check": "prettier --check \"src/**/*.{ts,js}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,js\"}"
   }
 }
