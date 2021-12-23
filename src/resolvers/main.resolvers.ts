@@ -1,19 +1,7 @@
 import { Country } from '../entity/Country.entity'
-import { Arg, Args, ArgsType, Field, Int, Query, Resolver } from 'type-graphql'
+import { Arg, Args, Query, Resolver } from 'type-graphql'
 import countries from '../resources/countries.v2.json'
-import { Max, Min } from 'class-validator'
-
-@ArgsType()
-class GetCountriesInput {
-  @Field(() => Int, {
-    nullable: true,
-    defaultValue: 8,
-    description: 'The number to limit the result',
-  })
-  @Min(1)
-  @Max(25)
-  limit: number
-}
+import { GetCountriesInput } from './main.input'
 
 @Resolver()
 export class MainResolver {
