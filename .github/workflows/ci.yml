@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: '12.22.7'
+        node: 12.22.7
         os: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: '12.22.7'
+        node: 12.22.7
         os: ubuntu-latest
 
     steps:
@@ -39,11 +39,11 @@ jobs:
   build:
     name: Trying to build
     needs: test
-    
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: '12.22.7'
+        node: 12.22.7
         os: ubuntu-latest
 
     steps:
