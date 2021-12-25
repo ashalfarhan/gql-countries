@@ -1,6 +1,6 @@
 <h1 align="center"> Gql Countries </h1>
 
-An implementation of [restcountries](https://restcountries.com) in [GraphQL](https://graphql.org) with [Node.js](https://nodejs.org)
+An implementation of [restcountries](https://restcountries.com) in [GraphQL](https://graphql.org) with [Node.js](https://nodejs.org).
 
 ## Technologies
 
@@ -9,5 +9,5 @@ An implementation of [restcountries](https://restcountries.com) in [GraphQL](htt
 
 ## About
 
-- Docs and playground are available on the homepage
-- Currently only available with v2 of the restcountries
+- Docs and playground are available on the homepage.
+- Currently only available with v2 of the restcountries.
