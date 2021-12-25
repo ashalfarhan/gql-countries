@@ -29,7 +29,7 @@ describe('Main Resolver test', () => {
         query: getCountries,
       })
 
-      expect(data?.getCountries.length).toBe(8)
+      expect(data?.getCountries).toHaveLength(8)
     })
 
     it('Should return given limit', async () => {
@@ -39,7 +39,7 @@ describe('Main Resolver test', () => {
         variables: { limit },
       })
 
-      expect(data?.getCountries.length).toBe(limit)
+      expect(data?.getCountries).toHaveLength(limit)
     })
 
     it('Should return error if above limit', async () => {
@@ -51,7 +51,7 @@ describe('Main Resolver test', () => {
 
       // Nothing to return
       expect(data).toBeNull()
-      
+
       expect(errors).toHaveLength(1)
     })
 
@@ -64,6 +64,7 @@ describe('Main Resolver test', () => {
 
       // Nothing to return
       expect(data).toBeNull()
+
       expect(errors).toHaveLength(1)
     })
   })
@@ -76,10 +77,10 @@ describe('Main Resolver test', () => {
         variables: { name },
       })
 
-      const result = data?.getCountriesByName
-      expect(
-        result.some((res: Country) => res.name.toLowerCase().includes(name))
-      ).toBe(true)
+      const result = data?.getCountriesByName as Country[]
+      expect(result.some(res => res.name.toLowerCase().includes(name))).toBe(
+        true
+      )
     })
 
     it('Should return nothing when exact', async () => {
@@ -90,7 +91,7 @@ describe('Main Resolver test', () => {
       })
 
       const result = data?.getCountriesByName
-      expect(result.length).toBe(0)
+      expect(result).toHaveLength(0)
     })
   })
 
@@ -119,7 +120,7 @@ describe('Main Resolver test', () => {
         variables: { currency, exact: true },
       })
 
-      expect(data?.getCountryByCurrency).toBe(null)
+      expect(data?.getCountryByCurrency).toBeNull()
     })
   })
 
@@ -142,7 +143,7 @@ describe('Main Resolver test', () => {
         variables: { capital, exact: true },
       })
 
-      expect(data?.getCountryByCapital).toBe(null)
+      expect(data?.getCountryByCapital).toBeNull()
     })
   })
 })
