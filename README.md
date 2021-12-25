@@ -2,7 +2,7 @@
 
 An implementation of [restcountries](https://restcountries.com) in [GraphQL](https://graphql.org) with [Node.js](https://nodejs.org)
 
-Built with:
+## Technologies
 
 - [Apollo Graphql](https://apollographql.com)
 - [Type-GraphQL](https://typegraphql.com/)
