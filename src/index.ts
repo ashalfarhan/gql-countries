@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
 import { MainResolver } from './resolvers/main.resolvers'
 import { loggerPlugins } from './plugins/logger'
+// eslint-disable-next-line node/no-extraneous-import
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 
 async function main() {
@@ -17,7 +18,6 @@ async function main() {
       loggerPlugins,
       ApolloServerPluginLandingPageGraphQLPlayground({
         title: 'GQL Countries',
-        // endpoint: '/docs',
       }),
     ],
   })

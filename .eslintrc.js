@@ -15,7 +15,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {
-    'node/no-extraneous-import': 0,
     'node/no-missing-import': [
       'error',
       {
