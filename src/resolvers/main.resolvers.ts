@@ -65,8 +65,10 @@ export class MainResolver {
     return countries.find(country =>
       country.currencies?.some(curr =>
         exact
-          ? curr.name?.toLowerCase() === currency.toLowerCase() || curr.code?.toLowerCase() === currency.toLowerCase()
-          : curr.name?.toLowerCase().includes(currency.toLowerCase()) || curr.code?.toLowerCase().includes(currency.toLowerCase())
+          ? curr.name?.toLowerCase() === currency.toLowerCase() ||
+            curr.code?.toLowerCase() === currency.toLowerCase()
+          : curr.name?.toLowerCase().includes(currency.toLowerCase()) ||
+            curr.code?.toLowerCase().includes(currency.toLowerCase())
       )
     )
   }
