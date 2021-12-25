@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-extraneous-import
 import { PluginDefinition } from 'apollo-server-core'
 import { logger } from '../utils/logger'
 

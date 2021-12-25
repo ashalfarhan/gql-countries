@@ -2,6 +2,7 @@ import { Country } from '../entity/Country.entity'
 import { Arg, Args, Query, Resolver } from 'type-graphql'
 import countries from '../resources/countries.v2.json'
 import { GetCountriesInput } from './main.input'
+import sampleSize from 'lodash.samplesize'
 
 @Resolver()
 export class MainResolver {
@@ -11,6 +12,14 @@ export class MainResolver {
     { limit }: GetCountriesInput
   ) {
     return countries.slice(0, limit)
+  }
+
+  @Query(() => [Country], { description: 'Get random countries with limit' })
+  getRandomCountries(
+    @Args()
+    { limit }: GetCountriesInput
+  ) {
+    return sampleSize(countries, limit)
   }
 
   @Query(() => [Country], {
@@ -35,6 +44,11 @@ export class MainResolver {
           : c.name.toLowerCase().includes(name.toLowerCase())
       )
       .slice(0, 8)
+  }
+
+  @Query(() => Country, { description: 'Get single random country' })
+  getRandomCountry() {
+    return countries[Math.round(Math.random() * countries.length - 1)]
   }
 
   @Query(() => Country, {
