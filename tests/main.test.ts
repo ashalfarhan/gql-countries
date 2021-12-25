@@ -1,9 +1,14 @@
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
-import { MainResolver } from '../src/resolvers/main.resolvers'
-import { getCountries, getCountriesByName } from './helper'
 import { Country } from '../src/entity/Country.entity'
+import { MainResolver } from '../src/resolvers/main.resolvers'
+import {
+  getCountries,
+  getCountriesByName,
+  getCountryByCurrency,
+  getCountryByCapital,
+} from './helper'
 
 describe('Main Resolver test', () => {
   let server: ApolloServer
@@ -37,24 +42,29 @@ describe('Main Resolver test', () => {
       expect(data?.getCountries.length).toBe(limit)
     })
 
-    it('Should return null if above limit', async () => {
+    it('Should return error if above limit', async () => {
       const limit = 200
-      const { data } = await server.executeOperation({
+      const { data, errors } = await server.executeOperation({
         query: getCountries,
         variables: { limit },
       })
 
+      // Nothing to return
       expect(data).toBeNull()
+      
+      expect(errors).toHaveLength(1)
     })
 
-    it('Should return null if below limit', async () => {
+    it('Should return error if below limit', async () => {
       const limit = -200
-      const { data } = await server.executeOperation({
+      const { data, errors } = await server.executeOperation({
         query: getCountries,
         variables: { limit },
       })
 
+      // Nothing to return
       expect(data).toBeNull()
+      expect(errors).toHaveLength(1)
     })
   })
 
@@ -81,6 +91,58 @@ describe('Main Resolver test', () => {
 
       const result = data?.getCountriesByName
       expect(result.length).toBe(0)
+    })
+  })
+
+  describe('getCountryByCurrency query', () => {
+    it('Should return something when given name without exact', async () => {
+      const currency = 'rupi'
+      const { data } = await server.executeOperation({
+        query: getCountryByCurrency,
+        variables: { currency },
+      })
+
+      const result = data?.getCountryByCurrency as Country
+      expect(
+        result.currencies?.some(
+          curr =>
+            curr.code.toLowerCase().includes(currency) ||
+            curr.name.toLowerCase().includes(currency)
+        )
+      ).toBe(true)
+    })
+
+    it('Should return nothing when exact', async () => {
+      const currency = 'rupi'
+      const { data } = await server.executeOperation({
+        query: getCountryByCurrency,
+        variables: { currency, exact: true },
+      })
+
+      expect(data?.getCountryByCurrency).toBe(null)
+    })
+  })
+
+  describe('getCountryByCapital query', () => {
+    it('Should return something when given name without exact', async () => {
+      const capital = 'jak'
+      const { data } = await server.executeOperation({
+        query: getCountryByCapital,
+        variables: { capital },
+      })
+
+      const result = data?.getCountryByCapital as Country
+      expect(result.capital?.toLowerCase().includes(capital)).toBe(true)
+    })
+
+    it('Should return nothing when exact', async () => {
+      const capital = 'jak'
+      const { data } = await server.executeOperation({
+        query: getCountryByCapital,
+        variables: { capital, exact: true },
+      })
+
+      expect(data?.getCountryByCapital).toBe(null)
     })
   })
 })

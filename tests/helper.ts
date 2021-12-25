@@ -15,3 +15,22 @@ export const getCountries = gql`
     }
   }
 `
+
+export const getCountryByCurrency = gql`
+  query ($currency: String!, $exact: Boolean) {
+    getCountryByCurrency(currency: $currency, exact: $exact) {
+      currencies {
+        code
+        name
+      }
+    }
+  }
+`
+
+export const getCountryByCapital = gql`
+  query ($capital: String!, $exact: Boolean) {
+    getCountryByCapital(capital: $capital, exact: $exact) {
+      capital
+    }
+  }
+`

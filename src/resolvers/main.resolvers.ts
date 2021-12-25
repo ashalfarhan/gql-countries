@@ -65,8 +65,8 @@ export class MainResolver {
     return countries.find(country =>
       country.currencies?.some(curr =>
         exact
-          ? curr.name.toLowerCase() === currency.toLowerCase()
-          : curr.name.toLowerCase().includes(currency.toLowerCase())
+          ? curr.name?.toLowerCase() === currency.toLowerCase() || curr.code?.toLowerCase() === currency.toLowerCase()
+          : curr.name?.toLowerCase().includes(currency.toLowerCase()) || curr.code?.toLowerCase().includes(currency.toLowerCase())
       )
     )
   }
@@ -102,9 +102,4 @@ export class MainResolver {
   getCountryByCallingCode(@Arg('callingCode') callingCode: string) {
     return countries.find(country => country.callingCodes.includes(callingCode))
   }
-
-  // @Query(() => Country, { nullable: true })
-  // getCountryByContinent(@Arg("continent") continent: string) {
-  //   return countries.filter(country => country)
-  // }
 }
