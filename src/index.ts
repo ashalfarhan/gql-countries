@@ -12,10 +12,12 @@ async function main() {
 
   const server = new ApolloServer({
     schema,
+    introspection: true,
     plugins: [
       loggerPlugins,
       ApolloServerPluginLandingPageGraphQLPlayground({
         title: 'GQL Countries',
+        // endpoint: '/docs',
       }),
     ],
   })
