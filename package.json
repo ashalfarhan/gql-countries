@@ -41,7 +41,7 @@
     "test": "jest --passWithNoTests",
     "lint": "eslint \"src/**/*.{ts,js}\"",
     "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix",
-    "format:check": "prettier --check \"src/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,md}\"",
     "format:fix": "prettier --write \"src/**/*.{ts,js\"}",
     "prepare": "husky install"
   },
