@@ -16,7 +16,6 @@ async function main() {
       loggerPlugins,
       ApolloServerPluginLandingPageGraphQLPlayground({
         title: 'GQL Countries',
-        endpoint: '/docs',
       }),
     ],
   })
